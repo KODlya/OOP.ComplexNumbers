@@ -74,9 +74,6 @@ Complex Complex::Mult(Complex &other) {
 }
 
 Complex Complex::Div(Complex &other) {
-    if (pow(other.real, 2) + pow(other.im, 2) == 0) {
-        throw domain_error("Division by zero");
-    }
     Complex temp((this->real * other.real + this->im * other.im) / (pow(other.real, 2) + pow(other.im, 2)), (this->im * other.real - other.im * this->real) / (pow(other.real, 2) + pow(other.im, 2)));
     return temp;
 }
