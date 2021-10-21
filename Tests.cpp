@@ -128,3 +128,22 @@ TEST_CASE("Complex numbers3", "[lab3]"){
     bin2.close();
     REQUIRE(strcmp(a.GetStr(), c.GetStr())==0);
 }
+
+TEST_CASE("Complex numbers4", "[lab6]") {
+    Complex a(1, 2);
+    Complex b;
+
+    try {
+        a.Div(b);
+    }
+    catch(const exception &ex) {
+        REQUIRE(strcmp(ex.what(), "Division by zero")==0);
+    }
+
+    try {
+        a / b;
+    }
+    catch(const exception &ex) {
+        REQUIRE(strcmp(ex.what(), "Division by zero")==0);
+    }
+}
