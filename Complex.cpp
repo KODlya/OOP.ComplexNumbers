@@ -202,6 +202,32 @@ Complex operator * (Complex &val1, Complex &val2) {
     return temp;
 }
 
+ostream& operator << (ostream &os, Complex &val) {
+    os << val.str;
+    return os;
+}
+
+istream& operator >> (istream &is, Complex &val) {
+    is >> val.real;
+    is.ignore(256, '+');
+    is >> val.im;
+    is.ignore(256, 'i');
+    val.toString();
+    return is;
+}
+
+ofstream& BinaryIn (ofstream& os, Complex& val) {
+    os.write((char*)&val.real, sizeof(double));
+    os.write((char*)&val.im, sizeof(double));
+    return os;
+}
+
+ifstream& BinaryOut (ifstream& in, Complex& val) {
+    in.read((char*)&val.real, sizeof(double));
+    in.read((char*)&val.im, sizeof(double));
+    val.toString();
+    return in;
+}
 
 
 

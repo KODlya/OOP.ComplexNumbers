@@ -34,6 +34,10 @@ public:
     friend Complex operator * (Complex &val1, Complex &val2);
     friend Complex operator / (Complex &val1, Complex &val2);
     char* operator ()();
+    friend ostream& operator << (ostream &os, Complex &val);
+    friend istream& operator >> (istream &is, Complex &val);
+    friend ofstream& BinaryIn (ofstream &os, Complex &val);
+    friend ifstream& BinaryOut (ifstream &is, Complex &val);
 private:
     double real;
     double im;

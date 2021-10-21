@@ -90,3 +90,41 @@ TEST_CASE( "Complex numbers2", "[lab2]") {
     char* s4 = a();
     REQUIRE(strcmp("2.0000*(cos(1.5708) + isin(1.5708))", s4) == 0);
 }
+
+TEST_CASE("Complex numbers3", "[lab3]"){
+    Complex a(1,2);
+    Complex b, c;
+
+    ofstream f("..\\text.txt");
+    if(!f.is_open()) {
+        cerr << "File open error";
+        exit(1);
+    }
+    f << a;
+    f.close();
+
+    ifstream f2("..\\text.txt");
+    if(!f2.is_open()) {
+        cerr << "File open error";
+        exit(1);
+    }
+    f2 >> b;
+    REQUIRE(strcmp(a.GetStr(), b.GetStr())==0);
+    REQUIRE(a.GetIm()==b.GetIm());
+    REQUIRE(a.GetReal()==b.GetReal());
+    ofstream bin("..\\bin.dat");
+    if(!bin.is_open()) {
+        cerr << "File open error";
+        exit(1);
+    }
+    BinaryIn(bin, a);
+    bin.close();
+    ifstream bin2("..\\bin.dat");
+    if(!bin2.is_open()) {
+        cerr << "File open error";
+        exit(1);
+    }
+    BinaryOut(bin2, c);
+    bin2.close();
+    REQUIRE(strcmp(a.GetStr(), c.GetStr())==0);
+}
