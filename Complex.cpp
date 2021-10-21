@@ -115,6 +115,96 @@ void Complex::toString() {
         sprintf(str, "%.4f+(%.4f)i", real, im);
     }
 }
+Complex& Complex::operator = (Complex &other) {
+    if(this->str != nullptr){
+        delete [] str;
+    }
+    this->real = other.real;
+    this->im = other.im;
+    this->N = other.N;
+    this->str = new char[other.N];
+    strcpy(this->str,other.str);
+    return *this;
+}
+
+double Complex::Modul() {
+    double m = sqrt(im*im+real*real);
+    return m;
+}
+
+double Complex::Argument() {
+    double arg;
+    if(real == 0 && im > 0)
+        arg = M_PI/2;
+    if(real == 0 && im < 0)
+        arg = -M_PI/2;
+    else if(real > 0)
+        arg = atan(im/real);
+    else if(real < 0 && im > 0)
+        arg = M_PI + atan(im/real);
+    else if (real < 0 && im < 0){
+        arg = -M_PI + atan(im/real);
+    }
+    return arg;
+}
+
+bool Complex::operator > (Complex &other) {
+    return this->Modul() > other.Modul();
+}
+
+bool Complex::operator < (Complex &other) {
+    return this->Modul() < other.Modul();
+}
+
+bool Complex::operator == (Complex &other) {
+    return this->Modul() == other.Modul();
+}
+
+bool Complex::operator != (Complex &other) {
+    return this->Modul() != other.Modul();
+}
+
+bool Complex::operator >= (Complex &other) {
+    return this->Modul() >= other.Modul();
+}
+
+bool Complex::operator <= (Complex &other) {
+    return this->Modul() <= other.Modul();
+}
+
+char* Complex::operator () () {
+    double a = Modul(), b = Argument();
+    int n1 = 0, n2 = 0;
+    do {
+        a = a / 10;
+        n1++;
+    } while ((int)a);
+
+    do {
+        b = b / 10;
+        n2++;
+    } while ((int)b);
+
+    if(a < 0)
+        n1++;
+    if(b < 0)
+        n2++;
+    int K = n1 + n2 * 2 + 27;
+    char* trg = new char[K];
+    sprintf(trg, "%.4f*(cos(%.4f) + isin(%.4f))", Modul(), Argument(), Argument());
+    return trg;
+}
+
+Complex operator / (Complex &val1, Complex &val2) {
+    Complex temp = val1.Div(val2);
+    return temp;
+}
+
+Complex operator * (Complex &val1, Complex &val2) {
+    Complex temp = val1.Mult(val2);
+    return temp;
+}
+
 
 
 

@@ -22,6 +22,18 @@ public:
     Complex Dif(Complex &other);
     Complex Mult(Complex &other);
     Complex Div(Complex &other);
+    double Modul();
+    double Argument();
+    Complex& operator = (Complex &other);
+    bool operator > (Complex &other);
+    bool operator < (Complex &other);
+    bool operator == (Complex &other);
+    bool operator != (Complex &other);
+    bool operator <= (Complex &other);
+    bool operator >= (Complex &other);
+    friend Complex operator * (Complex &val1, Complex &val2);
+    friend Complex operator / (Complex &val1, Complex &val2);
+    char* operator ()();
 private:
     double real;
     double im;
