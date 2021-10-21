@@ -24,7 +24,7 @@ public:
     Complex Div(Complex &other);
     double Modul();
     double Argument();
-    Complex& operator = (Complex &other);
+    Complex& operator = (Complex const &other);
     bool operator > (Complex &other);
     bool operator < (Complex &other);
     bool operator == (Complex &other);

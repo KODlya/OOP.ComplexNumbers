@@ -115,7 +115,7 @@ void Complex::toString() {
         sprintf(str, "%.4f+(%.4f)i", real, im);
     }
 }
-Complex& Complex::operator = (Complex &other) {
+Complex& Complex::operator = (Complex const &other) {
     if(this->str != nullptr){
         delete [] str;
     }
