@@ -8,12 +8,6 @@ Complex::Complex() {
     toString();
 }
 
-Complex::Complex(double real) {
-    this->real = real;
-    this->im = 0;
-    toString();
-}
-
 Complex::Complex(double real, double im) {
     this->real = real;
     this->im = im;
@@ -25,7 +19,7 @@ Complex::Complex(const Complex& other) {
     this->im = other.im;
     this->N = other.N;
     this->str = new char[other.N];
-    strcpy(this->str,other.str);
+    strcpy(this->str, other.str);
 }
 
 double Complex::GetIm() {
@@ -37,20 +31,20 @@ double Complex::GetReal() {
 }
 
 char* Complex::GetStr() {
-    char* copy = new char [this->N];
+    char* copy = new char[this->N];
     strcpy(copy, str);
     return copy;
 }
 
 void Complex::SetIm(double im) {
     this->im = im;
-    delete [] str;
+    delete[] str;
     toString();
 }
 
 void Complex::SetReal(double real) {
     this->real = real;
-    delete [] str;
+    delete[] str;
     toString();
 }
 
@@ -58,22 +52,22 @@ Complex::~Complex() {
     delete[] str;
 }
 
-Complex Complex:: Sum(Complex &val1, Complex &val2) {
+Complex Complex::Sum(Complex& val1, Complex& val2) {
     Complex temp(val1.real + val2.real, val1.im + val2.im);
     return temp;
 }
 
-Complex Complex::Dif(Complex &other) {
+Complex Complex::Dif(Complex& other) {
     Complex temp(this->real - other.real, this->im - other.im);
     return temp;
 }
 
-Complex Complex::Mult(Complex &other) {
+Complex Complex::Mult(Complex& other) {
     Complex temp(this->real * other.real - this->im * other.im, this->im * other.real + other.im * this->real);
     return temp;
 }
 
-Complex Complex::Div(Complex &other) {
+Complex Complex::Div(Complex& other) {
     if (pow(other.real, 2) + pow(other.im, 2) == 0) {
         throw domain_error("Division by zero");
     }
@@ -82,9 +76,9 @@ Complex Complex::Div(Complex &other) {
 }
 
 void Complex::toString() {
-    if(str != nullptr)
-        delete [] str;
-    int  k = (int)real, p =(int) im;
+    if (str != nullptr)
+        delete[] str;
+    int  k = (int)real, p = (int)im;
     int n1 = 0, n2 = 0;
 
     do {
@@ -115,60 +109,60 @@ void Complex::toString() {
         sprintf(str, "%.4f+(%.4f)i", real, im);
     }
 }
-Complex& Complex::operator = (Complex const &other) {
-    if(this->str != nullptr){
-        delete [] str;
+Complex& Complex::operator = (Complex const& other) {
+    if (this->str != nullptr) {
+        delete[] str;
     }
     this->real = other.real;
     this->im = other.im;
     this->N = other.N;
     this->str = new char[other.N];
-    strcpy(this->str,other.str);
+    strcpy(this->str, other.str);
     return *this;
 }
 
 double Complex::Modul() {
-    double m = sqrt(im*im+real*real);
+    double m = sqrt(im * im + real * real);
     return m;
 }
 
 double Complex::Argument() {
     double arg;
-    if(real == 0 && im > 0)
-        arg = M_PI/2;
-    if(real == 0 && im < 0)
-        arg = -M_PI/2;
-    else if(real > 0)
-        arg = atan(im/real);
-    else if(real < 0 && im > 0)
-        arg = M_PI + atan(im/real);
-    else if (real < 0 && im < 0){
-        arg = -M_PI + atan(im/real);
+    if (real == 0 && im > 0)
+        arg = M_PI / 2;
+    if (real == 0 && im < 0)
+        arg = -M_PI / 2;
+    else if (real > 0)
+        arg = atan(im / real);
+    else if (real < 0 && im > 0)
+        arg = M_PI + atan(im / real);
+    else if (real < 0 && im < 0) {
+        arg = -M_PI + atan(im / real);
     }
     return arg;
 }
 
-bool Complex::operator > (Complex &other) {
+bool Complex::operator > (Complex& other) {
     return this->Modul() > other.Modul();
 }
 
-bool Complex::operator < (Complex &other) {
+bool Complex::operator < (Complex& other) {
     return this->Modul() < other.Modul();
 }
 
-bool Complex::operator == (Complex &other) {
+bool Complex::operator == (Complex& other) {
     return this->Modul() == other.Modul();
 }
 
-bool Complex::operator != (Complex &other) {
+bool Complex::operator != (Complex& other) {
     return this->Modul() != other.Modul();
 }
 
-bool Complex::operator >= (Complex &other) {
+bool Complex::operator >= (Complex& other) {
     return this->Modul() >= other.Modul();
 }
 
-bool Complex::operator <= (Complex &other) {
+bool Complex::operator <= (Complex& other) {
     return this->Modul() <= other.Modul();
 }
 
@@ -185,9 +179,9 @@ char* Complex::operator () () {
         n2++;
     } while ((int)b);
 
-    if(a < 0)
+    if (a < 0)
         n1++;
-    if(b < 0)
+    if (b < 0)
         n2++;
     int K = n1 + n2 * 2 + 27;
     char* trg = new char[K];
@@ -195,22 +189,22 @@ char* Complex::operator () () {
     return trg;
 }
 
-Complex operator / (Complex &val1, Complex &val2) {
+Complex operator / (Complex& val1, Complex& val2) {
     Complex temp = val1.Div(val2);
     return temp;
 }
 
-Complex operator * (Complex &val1, Complex &val2) {
+Complex operator * (Complex& val1, Complex& val2) {
     Complex temp = val1.Mult(val2);
     return temp;
 }
 
-ostream& operator << (ostream &os, Complex &val) {
+ostream& operator << (ostream& os, Complex& val) {
     os << val.str;
     return os;
 }
 
-istream& operator >> (istream &is, Complex &val) {
+istream& operator >> (istream& is, Complex& val) {
     is >> val.real;
     is.ignore(256, '+');
     is >> val.im;
@@ -219,13 +213,13 @@ istream& operator >> (istream &is, Complex &val) {
     return is;
 }
 
-ofstream& BinaryIn (ofstream& os, Complex& val) {
+ofstream& BinaryIn(ofstream& os, Complex& val) {
     os.write((char*)&val.real, sizeof(double));
     os.write((char*)&val.im, sizeof(double));
     return os;
 }
 
-ifstream& BinaryOut (ifstream& in, Complex& val) {
+ifstream& BinaryOut(ifstream& in, Complex& val) {
     in.read((char*)&val.real, sizeof(double));
     in.read((char*)&val.im, sizeof(double));
     val.toString();
