@@ -2,7 +2,7 @@
 #include "Complex.h"
 #include "ComplexWithData.h"
 #include "ImprovedComplex.h"
-
+#include "List.h"
 TEST_CASE("Complex numbers1", "[lab1]") {
     Complex a;
     REQUIRE(a.GetIm() == 0);
@@ -243,7 +243,66 @@ TEST_CASE("Improved complex numbers", "[lab4]") {
 }
 
 TEST_CASE("Complex Numbers", "[lab5]"){
-
+    Complex a(1, 2);
+    DataComplex b(1, 6);
+    ImprovedComplex c(2, 2);
+    DataComplex d;
+    List list;
+    list.Insert(a);
+    list.Insert(b);
+    list.Insert(c);
+    REQUIRE(strcmp(list[0].GetStr(), "2.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[1].GetStr(), "1.0000+6.0000i") == 0);
+    REQUIRE(strcmp(list[2].GetStr(), "1.0000+2.0000i") == 0);
+    list.InsertByPosition(a, 0);
+    REQUIRE(strcmp(list[0].GetStr(), "1.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[1].GetStr(), "2.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[2].GetStr(), "1.0000+6.0000i") == 0);
+    REQUIRE(strcmp(list[3].GetStr(), "1.0000+2.0000i") == 0);
+    list.InsertByPosition(d, 3);
+    REQUIRE(strcmp(list[0].GetStr(), "1.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[1].GetStr(), "2.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[2].GetStr(), "1.0000+6.0000i") == 0);
+    REQUIRE(strcmp(list[3].GetStr(), "0.0000+0.0000i") == 0);
+    REQUIRE(strcmp(list[4].GetStr(), "1.0000+2.0000i") == 0);
+    list.DeleteByPosition(3);
+    cout<<"\n";
+    REQUIRE(strcmp(list[0].GetStr(), "1.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[1].GetStr(), "2.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[2].GetStr(), "1.0000+6.0000i") == 0);
+    REQUIRE(strcmp(list[3].GetStr(), "1.0000+2.0000i") == 0);
+    list.DeleteByPosition(3);
+    REQUIRE(strcmp(list[0].GetStr(), "1.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[1].GetStr(), "2.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[2].GetStr(), "1.0000+6.0000i") == 0);
+    list.DeleteByPosition(0);
+    list.DeleteByPosition(0);
+    REQUIRE(strcmp(list[0].GetStr(), "1.0000+6.0000i") == 0);
+    list.DeleteByPosition(0);
+    list.InsertBack(a);
+    list.InsertBack(b);
+    list.InsertBack(c);
+    REQUIRE(strcmp(list[0].GetStr(), "1.0000+2.0000i") == 0);
+    REQUIRE(strcmp(list[1].GetStr(), "1.0000+6.0000i") == 0);
+    REQUIRE(strcmp(list[2].GetStr(), "2.0000+2.0000i") == 0);
+    try {
+        list.DeleteByPosition(10);
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Out of list range") == 0);
+    }
+    try {
+        list.InsertByPosition(c, 30);
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Out of list range") == 0);
+    }
+    try {
+        list[21];
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Out of list range") == 0);
+    }
 }
 
 TEST_CASE("Complex numbers6", "[lab6]") {
