@@ -206,6 +206,8 @@ TEST_CASE("Improved complex numbers", "[lab4]") {
     b.SetIm(4);
     Complex g = a.Mult(b);
     REQUIRE(strcmp("11.0000+10.0000i", g.GetStr()) == 0);
+    ImprovedComplex l = a * b;
+    REQUIRE(strcmp("11.0000+10.0000i", l.GetStr()) == 0);
     char* s = a();
     REQUIRE(strcmp("3.6056*(cos(-0.5880) + isin(-0.5880))", s) == 0);
     char* s2 = b();
@@ -216,12 +218,28 @@ TEST_CASE("Improved complex numbers", "[lab4]") {
     b.SetIm(1);
     Complex h = a.Div(b);
     REQUIRE(strcmp("1.6000+0.2000i", h.GetStr()) == 0);
+    ImprovedComplex z = a / b;
+    REQUIRE(strcmp("1.6000+0.2000i", z.GetStr()) == 0);
     a = b = c;
     REQUIRE(strcmp("1.0000+2.0000i", a.GetStr()) == 0);
     REQUIRE(strcmp("1.0000+2.0000i", b.GetStr()) == 0);
     REQUIRE(strcmp("1.0000+2.0000i", a.GetStr()) == 0);
     Complex j = ImprovedComplex::Sum(b, c);
     REQUIRE(strcmp("2.0000+4.0000i", j.GetStr()) == 0);
+    a.SetReal(0);
+    a.SetIm(0);
+    try {
+        b / a;
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Division by zero") == 0);
+    }
+    try {
+        b.Div(a);
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Division by zero") == 0);
+    }
 }
 
 TEST_CASE("Complex Numbers", "[lab5]"){

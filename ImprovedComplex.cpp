@@ -30,3 +30,15 @@ ImprovedComplex& ImprovedComplex::operator = (ImprovedComplex const& other) {
     Complex:: operator = (other);
     return *this;
 }
+
+ImprovedComplex operator * (ImprovedComplex& val1, ImprovedComplex& val2) {
+    Complex temp1 = val1.Mult(val2);
+    ImprovedComplex temp(temp1.GetReal(),temp1.GetIm());
+    return temp;
+}
+
+ImprovedComplex operator / (ImprovedComplex& val1, ImprovedComplex& val2) {
+    Complex temp1 = val1.Div(val2);
+    ImprovedComplex temp(temp1.GetReal(),temp1.GetIm());
+    return temp;
+}

@@ -33,10 +33,10 @@ void DataComplex::Data() {
         else
             sprintf(data, "0%d.0%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
     else
-    if (ltm->tm_mon + 1 > 10)
-        sprintf(data, "%d.%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
-    else
-        sprintf(data, "%d.0%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
+        if (ltm->tm_mon + 1 > 10)
+            sprintf(data, "%d.%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
+        else
+            sprintf(data, "%d.0%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
 }
 
 DataComplex& DataComplex::operator = (DataComplex const& other) {

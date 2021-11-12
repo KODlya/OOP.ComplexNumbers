@@ -10,6 +10,8 @@ public:
     ImprovedComplex(char* str1);
     void toVal(char* str1);
     ImprovedComplex& operator = (ImprovedComplex const& other);
+    friend ImprovedComplex operator * (ImprovedComplex& val1, ImprovedComplex& val2);
+    friend ImprovedComplex operator / (ImprovedComplex& val1, ImprovedComplex& val2);
 };
 
 #endif
