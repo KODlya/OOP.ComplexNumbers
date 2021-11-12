@@ -4,15 +4,15 @@
 #include <ctime>
 #include <cstdlib>
 
-class ComplexWithData : public Complex {
+class DataComplex : public Complex {
 public:
-    ComplexWithData();
-    ComplexWithData(double real, double im);
-    ComplexWithData(const ComplexWithData& other);
-    ~ComplexWithData();
+    DataComplex();
+    DataComplex(double real, double im);
+    DataComplex(const DataComplex& other);
+    ~DataComplex();
     void Data();
     char* GetData();
-    ComplexWithData& operator = (ComplexWithData const& other);
+    DataComplex& operator = (DataComplex const& other);
 private:
     char* data;
 };

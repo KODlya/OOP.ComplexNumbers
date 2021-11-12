@@ -8,7 +8,6 @@ public:
     ImprovedComplex(double real, double im);
     ImprovedComplex(const ImprovedComplex& other);
     ImprovedComplex(char* str1);
-    ~ImprovedComplex();
     void toVal(char* str1);
     ImprovedComplex& operator = (ImprovedComplex const& other);
 };

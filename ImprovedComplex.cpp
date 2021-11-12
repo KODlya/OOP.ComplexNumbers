@@ -17,10 +17,6 @@ ImprovedComplex::ImprovedComplex(char* str1) {
     toVal(str1);
 }
 
-ImprovedComplex::~ImprovedComplex() {
-    delete[] str;
-}
-
 void ImprovedComplex::toVal(char* str1) {
     stringstream istr;
     istr << str1;

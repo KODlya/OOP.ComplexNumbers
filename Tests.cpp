@@ -132,13 +132,13 @@ TEST_CASE("Complex numbers3", "[lab3]") {
 }
 
 TEST_CASE("Complex numbers with data", "[lab4]") {
-    ComplexWithData a;
+    DataComplex a;
     REQUIRE(strcmp(a.GetStr(), "0.0000+0.0000i") == 0);
-    REQUIRE(strcmp(a.GetData(), "04.11.2021") == 0);
-    ComplexWithData b(1, 2);
+    REQUIRE(strcmp(a.GetData(), "12.11.2021") == 0);
+    DataComplex b(1, 2);
     REQUIRE(strcmp(b.GetStr(), "1.0000+2.0000i") == 0);
-    REQUIRE(strcmp(b.GetData(), "04.11.2021") == 0);
-    ComplexWithData c(b);
+    REQUIRE(strcmp(b.GetData(), "12.11.2021") == 0);
+    DataComplex c(b);
     REQUIRE(strcmp(b.GetStr(), c.GetStr()) == 0);
     REQUIRE(strcmp(b.GetData(), c.GetData()) == 0);
     a = c;
@@ -171,7 +171,7 @@ TEST_CASE("Complex numbers with data", "[lab4]") {
     REQUIRE(strcmp("1.0000+2.0000i", a.GetStr()) == 0);
     REQUIRE(strcmp("1.0000+2.0000i", b.GetStr()) == 0);
     REQUIRE(strcmp("1.0000+2.0000i", a.GetStr()) == 0);
-    Complex e = ComplexWithData::Sum(b, c);
+    Complex e = DataComplex::Sum(b, c);
     REQUIRE(strcmp("2.0000+4.0000i", e.GetStr()) == 0);
 }
 
@@ -190,9 +190,9 @@ TEST_CASE("Improved complex numbers", "[lab4]") {
     ImprovedComplex d = c;
     REQUIRE(strcmp(c.GetStr(), d.GetStr()) == 0);
     ImprovedComplex e(2, 3);
-    strcmp(e.GetStr(), "2.0000+3.0000i");
+    REQUIRE(strcmp(e.GetStr(), "2.0000+3.0000i") == 0);
     ImprovedComplex f;
-    strcmp(f.GetStr(), "2.0000+3.0000i");
+    REQUIRE(strcmp(f.GetStr(), "0.0000+0.0000i") == 0);
     a.SetReal(5);
     a.SetIm(7);
     REQUIRE((a >= b) == 1);
@@ -222,6 +222,10 @@ TEST_CASE("Improved complex numbers", "[lab4]") {
     REQUIRE(strcmp("1.0000+2.0000i", a.GetStr()) == 0);
     Complex j = ImprovedComplex::Sum(b, c);
     REQUIRE(strcmp("2.0000+4.0000i", j.GetStr()) == 0);
+}
+
+TEST_CASE("Complex Numbers", "[lab5]"){
+
 }
 
 TEST_CASE("Complex numbers6", "[lab6]") {
