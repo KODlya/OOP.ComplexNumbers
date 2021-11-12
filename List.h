@@ -1,6 +1,3 @@
-//
-// Created by Eldo on 12.11.2021.
-//
 #ifndef PROGA_LAB_LIST_H
 #define PROGA_LAB_LIST_H
 

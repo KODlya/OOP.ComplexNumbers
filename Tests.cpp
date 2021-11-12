@@ -135,10 +135,10 @@ TEST_CASE("Complex numbers3", "[lab3]") {
 TEST_CASE("Complex numbers with data", "[lab4]") {
     DataComplex a;
     REQUIRE(strcmp(a.GetStr(), "0.0000+0.0000i") == 0);
-    REQUIRE(strcmp(a.GetData(), "12.11.2021") == 0);
+    REQUIRE(strcmp(a.GetData(), "13.11.2021") == 0);
     DataComplex b(1, 2);
     REQUIRE(strcmp(b.GetStr(), "1.0000+2.0000i") == 0);
-    REQUIRE(strcmp(b.GetData(), "12.11.2021") == 0);
+    REQUIRE(strcmp(b.GetData(), "13.11.2021") == 0);
     DataComplex c(b);
     REQUIRE(strcmp(b.GetStr(), c.GetStr()) == 0);
     REQUIRE(strcmp(b.GetData(), c.GetData()) == 0);
@@ -324,4 +324,3 @@ TEST_CASE("Complex numbers6", "[lab6]") {
         REQUIRE(strcmp(ex.what(), "Division by zero") == 0);
     }
 }
-

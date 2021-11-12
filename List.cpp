@@ -4,13 +4,13 @@ bool List::IsEmpty() {
     return(head == nullptr);
 }
 List::List (){
-   head = nullptr;
+    head = nullptr;
 }
 
 void List::Insert(Complex &_complex){
-   Node * elem = new Node(_complex);
-   elem->next = head;
-   head = elem;
+    Node * elem = new Node(_complex);
+    elem->next = head;
+    head = elem;
 }
 
 void List::InsertBack(Complex &_complex) {
