@@ -2,16 +2,15 @@
 #define PROGA_LAB_NODE_H
 
 #include "Complex.h"
-#include "List.h"
 
-class Node {
+template <typename T>
+struct Node {
     Node *next;
-    Complex complex;
-    Node(Complex &_complex) {
+    T t;
+    Node(T &_t) {
         next = nullptr;
-        complex = Complex(_complex);
+        t = _t;
     }
-    friend class List;
 };
 
 

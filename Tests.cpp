@@ -135,10 +135,10 @@ TEST_CASE("Complex numbers3", "[lab3]") {
 TEST_CASE("Complex numbers with data", "[lab4]") {
     DataComplex a;
     REQUIRE(strcmp(a.GetStr(), "0.0000+0.0000i") == 0);
-    REQUIRE(strcmp(a.GetData(), "12.11.2021") == 0);
+    REQUIRE(strcmp(a.GetData(), "13.11.2021") == 0);
     DataComplex b(1, 2);
     REQUIRE(strcmp(b.GetStr(), "1.0000+2.0000i") == 0);
-    REQUIRE(strcmp(b.GetData(), "12.11.2021") == 0);
+    REQUIRE(strcmp(b.GetData(), "13.11.2021") == 0);
     DataComplex c(b);
     REQUIRE(strcmp(b.GetStr(), c.GetStr()) == 0);
     REQUIRE(strcmp(b.GetData(), c.GetData()) == 0);
@@ -243,12 +243,12 @@ TEST_CASE("Improved complex numbers", "[lab4]") {
     }
 }
 
-TEST_CASE("Complex Numbers", "[lab5]"){
+TEST_CASE("Complex Numbers", "[lab5-7]"){
     Complex a(1, 2);
     DataComplex b(1, 6);
     ImprovedComplex c(2, 2);
     DataComplex d;
-    List list;
+    List<Complex> list;
     list.Insert(a);
     list.Insert(b);
     list.Insert(c);
@@ -325,3 +325,75 @@ TEST_CASE("Complex numbers6", "[lab6]") {
     }
 }
 
+TEST_CASE("Complex numbers", "[lab7]"){
+    List <int> lst1;
+    int a1 = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int d1 = 4;
+    lst1.Insert(a1);
+    lst1.Insert(b1);
+    lst1.Insert(c1);
+    REQUIRE(lst1[0] == 3);
+    REQUIRE(lst1[1] == 2);
+    REQUIRE(lst1[2] == 1);
+    lst1.InsertByPosition(d1, 3);
+    REQUIRE(lst1[0] == 3);
+    REQUIRE(lst1[1] == 2);
+    REQUIRE(lst1[2] == 1);
+    REQUIRE(lst1[3] == 4);
+    lst1.DeleteByPosition(0);
+    REQUIRE(lst1[0] == 2);
+    REQUIRE(lst1[1] == 1);
+    REQUIRE(lst1[2] == 4);
+    lst1.DeleteByPosition(1);
+    REQUIRE(lst1[0] == 2);
+    REQUIRE(lst1[1] == 4);
+    lst1.InsertBack(a1);
+    REQUIRE(lst1[0] == 2);
+    REQUIRE(lst1[1] == 4);
+    REQUIRE(lst1[2] == 1);
+
+    List <float> lst2;
+    float a2 = 1.2, b2 = 2.77, c2 = 1.789, d2 = 6.34;
+    lst2.Insert(a2);
+    lst2.Insert(b2);
+    lst2.Insert(c2);
+    REQUIRE(lst2[0] ==1.789f);
+    REQUIRE(lst2[1] == 2.77f);
+    REQUIRE(lst2[2] == 1.2f);
+    lst2.InsertByPosition(d2, 3);
+    REQUIRE(lst2[0] ==1.789f);
+    REQUIRE(lst2[1] == 2.77f);
+    REQUIRE(lst2[2] == 1.2f);
+    REQUIRE(lst2[3] == 6.34f);
+    lst2.DeleteByPosition(0);
+    REQUIRE(lst2[0] == 2.77f);
+    REQUIRE(lst2[1] == 1.2f);
+    REQUIRE(lst2[2] == 6.34f);
+    lst2.DeleteByPosition(1);
+    REQUIRE(lst2[0] == 2.77f);
+    REQUIRE(lst2[1] == 6.34f);
+    lst2.InsertBack(a2);
+    REQUIRE(lst2[0] == 2.77f);
+    REQUIRE(lst2[1] == 6.34f);
+    REQUIRE(lst2[2] == 1.2f);
+    try {
+        lst1.DeleteByPosition(10);
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Out of list range") == 0);
+    }
+    try {
+        lst1.InsertByPosition(c1, 30);
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Out of list range") == 0);
+    }
+    try {
+        lst1[21];
+    }
+    catch (const exception& ex) {
+        REQUIRE(strcmp(ex.what(), "Out of list range") == 0);
+    }
+}
