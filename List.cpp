@@ -3,8 +3,15 @@
 bool List::IsEmpty() {
     return(head == nullptr);
 }
+
 List::List (){
     head = nullptr;
+}
+
+List::~List () {
+    while (!IsEmpty()) {
+        DeleteByPosition(0);
+    }
 }
 
 void List::Insert(Complex &_complex){

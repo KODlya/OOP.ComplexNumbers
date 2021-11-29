@@ -17,10 +17,16 @@ DataComplex::~DataComplex() {
     delete[] data;
 }
 
-char* DataComplex::GetData() {
+char* DataComplex::GetStr() {
     char* copy = new char[strlen(data)];
     strcpy(copy, data);
-    return data;
+    return copy;
+}
+
+char* DataComplex::GetStrCmp() {
+    char* copy = new char[strlen(str)];
+    strcpy(copy, str);
+    return copy;
 }
 
 void DataComplex::Data() {
@@ -45,4 +51,6 @@ DataComplex& DataComplex::operator = (DataComplex const& other) {
     strcpy(this->data, other.data);
     return *this;
 }
+
+
 

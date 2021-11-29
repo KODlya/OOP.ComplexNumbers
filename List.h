@@ -9,9 +9,10 @@ public:
     bool IsEmpty();
     void Insert(Complex &_complex);
     Complex& operator[](int i);
-    void InsertBack(Complex &_complex);
+    virtual void InsertBack(Complex &_complex);
     void InsertByPosition(Complex &_complex, int p);
     void DeleteByPosition(int pos);
+    ~List();
 private:
     Node* head;
 };

@@ -14,7 +14,7 @@ public:
     Complex(double real, double im);
     Complex(const Complex& other);
     double GetReal();
-    char* GetStr();
+    virtual char* GetStr();
     double GetIm();
     void SetIm(double im);
     void SetReal(double real);
