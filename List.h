@@ -164,12 +164,17 @@ public:
             delete elem;
         }
     }
-    static float Div(int n1, int n2){
+
+    static float Div(int n1, int n2) {
+        if(n2 == 0)
+            throw domain_error("Division by zero");
         return (float)n1/(float)n2;
     }
+
 private:
     Node<int>* head;
 };
+
 
 template<>
 class List<float> {
@@ -249,7 +254,9 @@ public:
         }
     }
 
-    static float Div(float n1, float n2){
+    static float Div(float n1, float n2) {
+        if(n2 == 0)
+            throw domain_error("Division by zero");
         return n1/n2;
     }
 private:
