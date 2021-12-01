@@ -17,10 +17,16 @@ DataComplex::~DataComplex() {
     delete[] data;
 }
 
-char* DataComplex::GetData() {
+char* DataComplex::GetStr() {
     char* copy = new char[strlen(data)];
     strcpy(copy, data);
-    return data;
+    return copy;
+}
+
+char* DataComplex::GetStrCmp() {
+    char* copy = new char[strlen(str)];
+    strcpy(copy, str);
+    return copy;
 }
 
 void DataComplex::Data() {
@@ -33,10 +39,10 @@ void DataComplex::Data() {
         else
             sprintf(data, "0%d.0%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
     else
-        if (ltm->tm_mon + 1 > 10)
-            sprintf(data, "%d.%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
-        else
-            sprintf(data, "%d.0%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
+    if (ltm->tm_mon + 1 > 10)
+        sprintf(data, "%d.%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
+    else
+        sprintf(data, "%d.0%d.%d", ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
 }
 
 DataComplex& DataComplex::operator = (DataComplex const& other) {
@@ -45,4 +51,3 @@ DataComplex& DataComplex::operator = (DataComplex const& other) {
     strcpy(this->data, other.data);
     return *this;
 }
-

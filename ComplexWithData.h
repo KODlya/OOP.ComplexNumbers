@@ -10,14 +10,12 @@ public:
     DataComplex(double real, double im);
     DataComplex(const DataComplex& other);
     ~DataComplex();
+    char * GetStr() override;
+    char * GetStrCmp();
     void Data();
-    char* GetData();
     DataComplex& operator = (DataComplex const& other);
 private:
     char* data;
 };
 
 #endif
-
-
-

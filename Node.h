@@ -6,11 +6,8 @@
 template <typename T>
 struct Node {
     Node *next;
-    T t;
-    Node(T &_t) {
-        next = nullptr;
-        t = _t;
-    }
+    T &t;
+    Node(T &_t):next(nullptr), t(_t) {     }
 };
 
 
