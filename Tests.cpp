@@ -3,6 +3,9 @@
 #include "ComplexWithData.h"
 #include "ImprovedComplex.h"
 #include "List.h"
+#include <ctime>
+#include <stack>
+#include <set>
 
 TEST_CASE("Complex numbers1", "[lab1]") {
     Complex a;
@@ -380,4 +383,51 @@ TEST_CASE("Complex numbers", "[lab7]"){
     REQUIRE(lst2[1] == 2.0f);
     REQUIRE(lst2[2] == 1.2f);
     REQUIRE(lst2.Div(lst2[2], lst2[1]) == 0.6f);
+}
+
+TEST_CASE("Stack", "[lab8]") {
+    stack <int> Stack;
+    srand(time(nullptr));
+    clock_t start = clock();
+    for(int i = 0; i < 100000; i++)
+        Stack.push(rand() % 100000);
+    cout << "Int Stack PUSH:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    start = clock();
+    while(!Stack.empty()) {
+        Stack.pop();
+    }
+    cout << "Int Stack POP:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n\n";
+
+
+    stack <Complex> Stack2;
+    Complex a(2,3);
+    start = clock();
+    for(int i = 0; i < 100000; i++) {
+        Stack2.push(a);
+    }
+    cout << "Complex Stack PUSH:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    start = clock();
+    while(!Stack2.empty()) {
+        Stack2.pop();
+    }
+    cout << "Complex Stack POP:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n\n";
+}
+
+TEST_CASE("Multiset", "[lab8]") {
+    multiset <int> Multiset;
+    clock_t start = clock();
+    for(int i = 0; i < 100000; i++)
+        Multiset.insert(rand() % 100000);
+    cout << "Int MultiSet Insert:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    multiset<int>::const_iterator it;
+    it = Multiset.begin();
+    start = clock();
+    while(it != Multiset.end()){
+        Multiset.find(*it);
+        it++;
+    }
+    cout << "Int MultiSet Find:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    start = clock();
+    Multiset.erase(Multiset.begin(), Multiset.end());
+    cout << "Int MultiSet Erase:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
 }
