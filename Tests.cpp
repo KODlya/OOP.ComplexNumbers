@@ -356,7 +356,7 @@ TEST_CASE("Complex numbers", "[lab7]"){
     REQUIRE(lst1[0] == 2);
     REQUIRE(lst1[1] == 4);
     REQUIRE(lst1[2] == 1);
-    REQUIRE(lst1.Div(lst1[2], lst1[1]) == 0.25);
+    REQUIRE(lst1.Max(lst1[2], lst1[1]) == 4);
 
     List <float> lst2;
     float a2 = 1.2, b2 = 2.77, c2 = 1.789, d2 = 2.0;
@@ -382,7 +382,7 @@ TEST_CASE("Complex numbers", "[lab7]"){
     REQUIRE(lst2[0] == 2.77f);
     REQUIRE(lst2[1] == 2.0f);
     REQUIRE(lst2[2] == 1.2f);
-    REQUIRE(lst2.Div(lst2[2], lst2[1]) == 0.6f);
+    REQUIRE(lst2.Min(lst2[2], lst2[1]) == 1.2f);
 }
 
 TEST_CASE("Stack", "[lab8]") {
@@ -426,27 +426,26 @@ TEST_CASE("Multiset", "[lab8]") {
         Multiset.find(*it);
         it++;
     }
-    cout << "Int MultiSet Find:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    cout << "Int MultiSet Find:" << ((float)clock() - start) / CLOCKS_PER_SEC<<"\n";
     start = clock();
     Multiset.erase(Multiset.begin(), Multiset.end());
-    cout << "Int MultiSet Erase:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    cout << "Int MultiSet Erase:" << ((float)clock() - start) / CLOCKS_PER_SEC<<"\n\n";
 
     Complex a(1, 2 );
     multiset <Complex> Multiset2;
     start = clock();
     for(int i = 0; i < 100000; i++)
         Multiset2.insert(a);
-    cout << "Complex MultiSet Insert:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    cout << "Complex MultiSet Insert:" << ((float)clock() - start) / CLOCKS_PER_SEC<<"\n";
     multiset<Complex>::const_iterator it2;
     it2 = Multiset2.begin();
     start = clock();
-    while(it2 != Multiset2.end()){
+    while(it2 != Multiset2.end()) {
         Multiset2.find(*it2);
         it2++;
     }
-    cout << "Complex MultiSet Find:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    cout << "Complex MultiSet Find:" << ((float)clock() - start) / CLOCKS_PER_SEC<<"\n";
     start = clock();
     Multiset2.erase(Multiset2.begin(), Multiset2.end());
     cout << "Complex MultiSet Erase:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
-
 }

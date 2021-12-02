@@ -90,6 +90,13 @@ private:
 template<>
 class List<int> {
 public:
+    static int Max(int n1, int n2) {
+        if(n1 > n2)
+            return n1;
+        else
+            return n2;
+    }
+
     bool IsEmpty() {
         return(head == nullptr);
     }
@@ -165,12 +172,6 @@ public:
         }
     }
 
-    static float Div(int n1, int n2) {
-        if(n2 == 0)
-            throw domain_error("Division by zero");
-        return (float)n1/(float)n2;
-    }
-
 private:
     Node<int>* head;
 };
@@ -179,9 +180,17 @@ private:
 template<>
 class List<float> {
 public:
+    static float Min(float n1, float n2) {
+        if(n1 < n2)
+            return n1;
+        else
+            return n2;
+    }
+
     bool IsEmpty() {
         return(head == nullptr);
     }
+
     List () {
         head = nullptr;
     }
@@ -254,11 +263,6 @@ public:
         }
     }
 
-    static float Div(float n1, float n2) {
-        if(n2 == 0)
-            throw domain_error("Division by zero");
-        return n1/n2;
-    }
 private:
     Node<float>* head;
 };
