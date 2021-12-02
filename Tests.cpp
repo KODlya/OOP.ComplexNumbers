@@ -353,7 +353,7 @@ TEST_CASE("Complex numbers", "[lab7]"){
     REQUIRE(lst1[0] == 2);
     REQUIRE(lst1[1] == 4);
     REQUIRE(lst1[2] == 1);
-    REQUIRE(lst1.Div(lst1[2], lst1[1]) == 0.25);
+    REQUIRE(lst1.Max(lst1[2], lst1[1]) == 4);
 
     List <float> lst2;
     float a2 = 1.2, b2 = 2.77, c2 = 1.789, d2 = 2.0;
@@ -379,5 +379,5 @@ TEST_CASE("Complex numbers", "[lab7]"){
     REQUIRE(lst2[0] == 2.77f);
     REQUIRE(lst2[1] == 2.0f);
     REQUIRE(lst2[2] == 1.2f);
-    REQUIRE(lst2.Div(lst2[2], lst2[1]) == 0.6f);
+    REQUIRE(lst2.Min(lst2[2], lst2[1]) == 1.2f);
 }
