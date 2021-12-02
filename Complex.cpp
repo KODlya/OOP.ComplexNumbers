@@ -121,7 +121,7 @@ Complex& Complex::operator = (Complex const& other) {
     return *this;
 }
 
-double Complex::Modul() {
+double Complex::Modul() const{
     double m = sqrt(im * im + real * real);
     return m;
 }
@@ -144,10 +144,6 @@ double Complex::Argument() {
 
 bool Complex::operator > (Complex& other) {
     return this->Modul() > other.Modul();
-}
-
-bool Complex::operator < (Complex& other) {
-    return this->Modul() < other.Modul();
 }
 
 bool Complex::operator == (Complex& other) {
@@ -226,6 +222,9 @@ ifstream& BinaryOut(ifstream& in, Complex& val) {
     return in;
 }
 
+bool operator < (const Complex& val1, const Complex& val2) {
+       return(val1.Modul()< val2.Modul());
+}
 
 
 

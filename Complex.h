@@ -23,11 +23,11 @@ public:
     Complex Dif(Complex& other);
     Complex Mult(Complex& other);
     Complex Div(Complex& other);
-    double Modul();
+    double Modul() const;
     double Argument();
     Complex& operator = (Complex const& other);
     bool operator > (Complex& other);
-    bool operator < (Complex& other);
+    friend bool operator < (const Complex& val1, const Complex& val2);
     bool operator == (Complex& other);
     bool operator != (Complex& other);
     bool operator <= (Complex& other);

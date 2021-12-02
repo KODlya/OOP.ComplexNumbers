@@ -430,4 +430,23 @@ TEST_CASE("Multiset", "[lab8]") {
     start = clock();
     Multiset.erase(Multiset.begin(), Multiset.end());
     cout << "Int MultiSet Erase:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+
+    Complex a(1, 2 );
+    multiset <Complex> Multiset2;
+    start = clock();
+    for(int i = 0; i < 100000; i++)
+        Multiset2.insert(a);
+    cout << "Complex MultiSet Insert:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    multiset<Complex>::const_iterator it2;
+    it2 = Multiset2.begin();
+    start = clock();
+    while(it2 != Multiset2.end()){
+        Multiset2.find(*it2);
+        it2++;
+    }
+    cout << "Complex MultiSet Find:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+    start = clock();
+    Multiset2.erase(Multiset2.begin(), Multiset2.end());
+    cout << "Complex MultiSet Erase:" << ((float)clock() - start)/CLOCKS_PER_SEC<<"\n";
+
 }
